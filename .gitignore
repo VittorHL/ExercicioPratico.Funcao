@@ -3,5 +3,53 @@
 # Data: 06/05/2024                          #
 # Autor: Vittor Henrique                    #
 #############################################
+# Pastas específicas do Visual Studio
+.vs
+bin
+obj
 
-.vs/
+# Arquivos de compilação
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.exe.config
+*.appx
+*.appxbundle
+*.appxrecipe
+*.appxsym
+*.msix
+*.msixbundle
+
+# Arquivos de publicação
+*.publishsettings
+*.pubxml
+*.pubxml.user
+
+# Arquivos de log
+*.log
+*.log.xml
+
+# Arquivos de backup do Visual Studio
+*.bak
+*.cache
+*.suo
+*.user
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.sdf
+*.opensdf
+*.sln.docstates
+
+# Arquivos de análise de código
+*.sln.ide
+
+# Arquivos de cache do ReSharper
+*_ReSharper.*
+*.[Rr]e[Ss]harper.user
+
+# Diretórios de ferramentas
+_ReSharper.Caches
+CodeCoverage
