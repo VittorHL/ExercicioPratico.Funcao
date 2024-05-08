@@ -62,8 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\BoCliente.cs" />
+    <Compile Include="DAL\Beneficiario\DaoBeneficiario.cs" />
     <Compile Include="DAL\Clientes\DaoCliente.cs" />
     <Compile Include="DAL\Padrao\FI.AcessoDados.cs" />
+    <Compile Include="DML\Beneficiario.cs" />
     <Compile Include="DML\Cliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,6 +90,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAL\Beneficiario\Procedures\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
