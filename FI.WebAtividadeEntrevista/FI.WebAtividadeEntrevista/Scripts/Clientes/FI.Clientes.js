@@ -1,5 +1,9 @@
 ﻿
 $(document).ready(function () {
+    ValidaCPF();
+
+    $('#CPF').mask('000.000.000-00');
+
     $('#formCadastro').submit(function (e) {
         e.preventDefault();
         $.ajax({
@@ -7,9 +11,10 @@ $(document).ready(function () {
             method: "POST",
             data: {
                 "NOME": $(this).find("#Nome").val(),
+                "Sobrenome": $(this).find("#Sobrenome").val(),
+                "CPF": $(this).find("#CPF").unmask().val(),
                 "CEP": $(this).find("#CEP").val(),
                 "Email": $(this).find("#Email").val(),
-                "Sobrenome": $(this).find("#Sobrenome").val(),
                 "Nacionalidade": $(this).find("#Nacionalidade").val(),
                 "Estado": $(this).find("#Estado").val(),
                 "Cidade": $(this).find("#Cidade").val(),
@@ -32,6 +37,21 @@ $(document).ready(function () {
     })
     
 })
+
+function ValidaCPF() {
+    const input = $("#CPF");
+
+    input.on("change", function () {
+        let cpf = input.unmask().val();
+
+        if (!ValidarCPF(cpf)) {
+            ModalDialog("Ocorreu um erro", "CPF Inválido!");
+            input.val("");
+        }
+
+        input.mask('000.000.000-00');
+    });
+}
 
 function ModalDialog(titulo, texto) {
     var random = Math.random().toString().replace('.', '');

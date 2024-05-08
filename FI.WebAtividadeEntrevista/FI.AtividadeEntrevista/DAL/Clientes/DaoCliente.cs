@@ -30,6 +30,7 @@ namespace FI.AtividadeEntrevista.DAL
             parametros.Add(new System.Data.SqlClient.SqlParameter("Logradouro", cliente.Logradouro));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Email", cliente.Email));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Telefone", cliente.Telefone));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", cliente.CPF));
 
             DataSet ds = base.Consultar("FI_SP_IncClienteV2", parametros);
             long ret = 0;
@@ -39,7 +40,7 @@ namespace FI.AtividadeEntrevista.DAL
         }
 
         /// <summary>
-        /// Inclui um novo cliente
+        /// Consultar cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
         internal DML.Cliente Consultar(long Id)
@@ -54,17 +55,33 @@ namespace FI.AtividadeEntrevista.DAL
             return cli.FirstOrDefault();
         }
 
-        internal bool VerificarExistencia(string CPF)
+        /// <summary>
+        /// Validar se já existe cliente com o Cpf informado
+        /// </summary>
+        /// <param name="CPF"></param>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        internal bool VerificarExistencia(string CPF, long Id = 0)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
             parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", CPF));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", Id));
 
             DataSet ds = base.Consultar("FI_SP_VerificaCliente", parametros);
 
             return ds.Tables[0].Rows.Count > 0;
         }
 
+        /// <summary>
+        /// Pesquisar a lista de clientes cadastrados no sistema
+        /// </summary>
+        /// <param name="iniciarEm"></param>
+        /// <param name="quantidade"></param>
+        /// <param name="campoOrdenacao"></param>
+        /// <param name="crescente"></param>
+        /// <param name="qtd"></param>
+        /// <returns></returns>
         internal List<Cliente> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
@@ -103,7 +120,7 @@ namespace FI.AtividadeEntrevista.DAL
         }
 
         /// <summary>
-        /// Inclui um novo cliente
+        /// Alterar cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
         internal void Alterar(DML.Cliente cliente)
@@ -119,11 +136,11 @@ namespace FI.AtividadeEntrevista.DAL
             parametros.Add(new System.Data.SqlClient.SqlParameter("Logradouro", cliente.Logradouro));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Email", cliente.Email));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Telefone", cliente.Telefone));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", cliente.CPF));
             parametros.Add(new System.Data.SqlClient.SqlParameter("ID", cliente.Id));
 
             base.Executar("FI_SP_AltCliente", parametros);
         }
-
 
         /// <summary>
         /// Excluir Cliente
@@ -138,6 +155,11 @@ namespace FI.AtividadeEntrevista.DAL
             base.Executar("FI_SP_DelCliente", parametros);
         }
 
+        /// <summary>
+        /// Converter o Dataset em uma Lista parametrizada
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <returns>List<DML.Cliente></returns>
         private List<DML.Cliente> Converter(DataSet ds)
         {
             List<DML.Cliente> lista = new List<DML.Cliente>();
@@ -156,6 +178,7 @@ namespace FI.AtividadeEntrevista.DAL
                     cli.Nome = row.Field<string>("Nome");
                     cli.Sobrenome = row.Field<string>("Sobrenome");
                     cli.Telefone = row.Field<string>("Telefone");
+                    cli.CPF = row.Field<string>("CPF");
                     lista.Add(cli);
                 }
             }
