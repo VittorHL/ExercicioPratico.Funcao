@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BoBeneficiario.cs" />
     <Compile Include="BLL\BoCliente.cs" />
     <Compile Include="DAL\Beneficiario\DaoBeneficiario.cs" />
     <Compile Include="DAL\Clientes\DaoCliente.cs" />
