@@ -73,6 +73,15 @@ namespace FI.AtividadeEntrevista.DAL
             return ds.Tables[0].Rows.Count > 0;
         }
 
+        /// <summary>
+        /// Pesquisar a lista de clientes cadastrados no sistema
+        /// </summary>
+        /// <param name="iniciarEm"></param>
+        /// <param name="quantidade"></param>
+        /// <param name="campoOrdenacao"></param>
+        /// <param name="crescente"></param>
+        /// <param name="qtd"></param>
+        /// <returns></returns>
         internal List<Cliente> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
@@ -146,6 +155,11 @@ namespace FI.AtividadeEntrevista.DAL
             base.Executar("FI_SP_DelCliente", parametros);
         }
 
+        /// <summary>
+        /// Converter o Dataset em uma Lista parametrizada
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <returns>List<DML.Cliente></returns>
         private List<DML.Cliente> Converter(DataSet ds)
         {
             List<DML.Cliente> lista = new List<DML.Cliente>();
