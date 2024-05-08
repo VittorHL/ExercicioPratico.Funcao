@@ -272,6 +272,8 @@
     <Content Include="Scripts\Clientes\FI.ListClientes.js" />
     <Content Include="Scripts\Clientes\FI.Clientes.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jMask\jquery.mask.js" />
+    <Content Include="Scripts\jMask\jquery.mask.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -391,6 +393,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\validate.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

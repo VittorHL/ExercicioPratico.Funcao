@@ -55,11 +55,18 @@ namespace FI.AtividadeEntrevista.DAL
             return cli.FirstOrDefault();
         }
 
-        internal bool VerificarExistencia(string CPF)
+        /// <summary>
+        /// Validar se já existe cliente com o Cpf informado
+        /// </summary>
+        /// <param name="CPF"></param>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        internal bool VerificarExistencia(string CPF, long Id = 0)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
             parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", CPF));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", Id));
 
             DataSet ds = base.Consultar("FI_SP_VerificaCliente", parametros);
 
@@ -125,7 +132,6 @@ namespace FI.AtividadeEntrevista.DAL
 
             base.Executar("FI_SP_AltCliente", parametros);
         }
-
 
         /// <summary>
         /// Excluir Cliente
