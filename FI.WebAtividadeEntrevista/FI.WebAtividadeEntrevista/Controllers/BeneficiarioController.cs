@@ -105,7 +105,7 @@ namespace WebAtividadeEntrevista.Controllers
                         }
                         else
                         {
-                            if (boBeneficiario.VerificarExistencia(o.CPF, o.IdCliente))
+                            if (boBeneficiario.VerificarExistencia(o.CPF, idCliente))
                             {
                                 mensagemRetorno = $"O Beneficiário com CPF: {o.CPF} já está cadastrado para o cliente! </br>";
                                 return false;
