@@ -1,15 +1,15 @@
-﻿CREATE PROC FI_SP_AltCliente
-    @NOME			VARCHAR (50) ,
-    @SOBRENOME		VARCHAR (255),
-    @NACIONALIDADE	VARCHAR (50) ,
-    @CEP			VARCHAR (9)  ,
-    @ESTADO			VARCHAR (2)  ,
-    @CIDADE			VARCHAR (50) ,
-    @LOGRADOURO		VARCHAR (500),
-    @EMAIL			VARCHAR (2079),
-    @TELEFONE		VARCHAR (15),
-    @CPF			VARCHAR (11),
-	@Id				BIGINT
+﻿ALTER PROC FI_SP_AltCliente
+    @NOME          VARCHAR (50) ,
+    @SOBRENOME     VARCHAR (255),
+    @NACIONALIDADE VARCHAR (50) ,
+    @CEP           VARCHAR (9)  ,
+    @ESTADO        VARCHAR (2)  ,
+    @CIDADE        VARCHAR (50) ,
+    @LOGRADOURO    VARCHAR (500),
+    @EMAIL         VARCHAR (2079),
+    @TELEFONE      VARCHAR (15) = NULL,
+    @CPF           VARCHAR (11) = NULL,
+	 @Id           BIGINT
 AS
 BEGIN
 	UPDATE CLIENTES 
@@ -23,6 +23,6 @@ BEGIN
 		LOGRADOURO = @LOGRADOURO, 
 		EMAIL = @EMAIL, 
 		TELEFONE = @TELEFONE,
-		CPF = @CPF
+        CPF = @CPF
 	WHERE Id = @Id
 END

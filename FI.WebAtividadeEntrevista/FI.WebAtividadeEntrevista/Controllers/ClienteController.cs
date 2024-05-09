@@ -39,6 +39,7 @@ namespace WebAtividadeEntrevista.Controllers
             {
                 if (bo.VerificarExistencia(model.CPF))
                 {
+                    Response.StatusCode = 400;
                     return Json("CPF já cadastrado");
                 }
                 else
@@ -80,6 +81,7 @@ namespace WebAtividadeEntrevista.Controllers
             {
                 if (bo.VerificarExistencia(model.CPF, model.Id))
                 {
+                    Response.StatusCode = 400;
                     return Json("CPF já cadastrado");
                 }
                 else

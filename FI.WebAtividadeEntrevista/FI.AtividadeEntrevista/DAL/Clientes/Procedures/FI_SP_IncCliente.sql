@@ -6,8 +6,8 @@
     @ESTADO        VARCHAR (2)  ,
     @CIDADE        VARCHAR (50) ,
     @LOGRADOURO    VARCHAR (500),
-    @EMAIL         VARCHAR (2079),
-    @TELEFONE      VARCHAR (15),
+    @EMAIL         VARCHAR (2079) = NULL,
+    @TELEFONE      VARCHAR (15) = NULL,
     @CPF           VARCHAR (11)
 AS
 BEGIN

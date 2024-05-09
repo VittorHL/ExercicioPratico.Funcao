@@ -1,6 +1,7 @@
 ﻿
 $(document).ready(function () {
     $('#txtCpf').mask('000.000.000-00');
+    VerificaDivTemporaria();
     ValidaCPF();
     SubmitForm();
     RemoveFooter();
@@ -11,22 +12,71 @@ function SubmitForm() {
     $('#formCadastroBeneficiario').submit(function (e) {
         e.preventDefault();
 
-        var html = '';
-        html += '<tr id=\'0\' idCliente=\'0\'>';
-        html += '<td>' + $('#txtCpf').val().replace(/\D/g, '') + '</td>';
-        html += '<td>' + $('#txtNome').val() + '</td>';
+        let html = '';
+        let div = $('#divSaveTempBeneficiario');
+        let table = $('#beneficiariosTable tbody');
+        let hideIdBeneficiario = $('#hideIdBeneficiario');
+        let hideIdCliente = $('#hideIdCliente');
+
+        let valorCPF = $('#txtCpf').val().replace(/\D/g, '');
+        let valorNome = $('#txtNome').val();
+        let valorIdBeneficiario = 0;
+        let valorIdCliente = 0;
+
+        if (VerificaInclusao(valorCPF)) {
+            return;
+        }
+
+        if (hideIdBeneficiario.val() != 0) {
+            valorIdBeneficiario = hideIdBeneficiario.val();
+        }
+
+        if (hideIdCliente.val() != 0) {
+            valorIdCliente = hideIdCliente.val();
+        }
+
+        html += '<tr id=\'' + valorIdBeneficiario + '\' idCliente=\'' + valorIdCliente + '\'>';
+        html += '<td>' + valorCPF + '</td>';
+        html += '<td>' + valorNome + '</td>';
         html += '<td> <button class="btn btn-info btn-sm" onclick="AlteraBeneficiario(this)">Editar</button> <button class="btn btn-danger btn-sm" onclick="ExcluiBeneficiario(this)">Excluir</button> </td>';
-        html += '</tr>';` `
-        $('#beneficiariosTable tbody').append(html);
+        html += '</tr>'; ` `
+
+        table.append(html);
+        div.html(table.html());
         LimpaCampos();
     })
 }
 
-function AlteraBeneficiario(el) {
-    var row = el.closest("tr");
+function VerificaDivTemporaria() {
+    let div = $("#divSaveTempBeneficiario tr");
+    
+    if (div.length > 0) {
+        $('#beneficiariosTable tbody').append($("#divSaveTempBeneficiario").html());
+    }
+}
 
-    var txCpf = document.getElementById("txtCpf");
-    var txtNome = document.getElementById("txtNome");
+function VerificaInclusao(cpf) {
+    var existeCpf = false;
+
+    $('#beneficiariosTable tbody tr').each(function () {
+        let cpfCadastrado = $(this).find('td:eq(0)').text().trim().replace(/\D/g, '');
+        
+        if (cpfCadastrado == cpf) {
+            ModalDialog("Ocorreu um erro", "CPF já incluído!");
+            existeCpf = true;
+        }
+    });
+
+    return existeCpf;
+}
+
+function AlteraBeneficiario(el) {
+    let row = el.closest("tr");
+    
+    let txCpf = document.getElementById("txtCpf");
+    let txtNome = document.getElementById("txtNome");
+    let hideIdCliente = document.getElementById("hideIdCliente");
+    let hideIdBeneficiario = document.getElementById("hideIdBeneficiario");
 
     if (txCpf && txtNome) {
         var cpf = row.cells[0].textContent.trim(); 
@@ -34,7 +84,9 @@ function AlteraBeneficiario(el) {
         
         txCpf.value = cpf;
         txtNome.value = nome;
-        ExcluiBeneficiario(el);
+        hideIdCliente.value = row.getAttribute("idcliente");
+        hideIdBeneficiario.value = row.getAttribute("id");;
+        el.closest("tr").remove();
     } else {
         console.log("Elementos não encontrados.");
     }
@@ -45,6 +97,7 @@ function ExcluiBeneficiario(el) {
 
     if (row) {
         row.remove();
+        $('#divSaveTempBeneficiario').html($('#beneficiariosTable tbody').html());
     } else {
         console.log("Linha não encontrada.");
     }
@@ -53,6 +106,8 @@ function ExcluiBeneficiario(el) {
 function LimpaCampos() {
     $("#txtCpf").val("");
     $("#txtNome").val("");
+    $('#hideIdBeneficiario').val("0");
+    $('#hideIdCliente').val("0");
 }
 
 function ValidaCPF() {
