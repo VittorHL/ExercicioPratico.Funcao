@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Beneficiários";
+}
+@section scripts{
+    <script>
+        var obj = @Html.Raw(Json.Encode(Model));
+    </script>
+    @Scripts.Render("~/bundles/listBeneficiario")
+    @Scripts.Render("~/bundles/beneficiario")
+}
+@Html.Partial("Index")
+
+

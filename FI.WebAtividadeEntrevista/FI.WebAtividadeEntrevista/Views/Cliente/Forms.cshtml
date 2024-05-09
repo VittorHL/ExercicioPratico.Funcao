@@ -80,6 +80,10 @@
 
     <div class="row">
         <div class="col-lg-12">
+            <div class="pull-left">
+                <a id="btnModalBeneficiario" name="btnModalBeneficiario" class="btn btn-sm btn-default" data-target="#modalBeneficiario" data-toggle="modal" href="">Beneficiários</a>
+                @*@Html.ActionLink("Beneficiários", "Index", "Beneficiario", new { }, new { @class = "btn btn-sm btn-default", @data_toggle = "modal", @data_target = "#modalBeneficiario" })*@
+            </div>
             <div class="pull-right">
                 <button type="submit" class="btn btn-sm btn-success">Salvar</button>
                 @Html.ActionLink("Voltar", "Index", "Cliente", new { }, new { @class = "btn btn-sm btn-danger" })
@@ -87,5 +91,6 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalBeneficiario" tabindex="-1" style="top: 100px;"></div>
 
 </form>

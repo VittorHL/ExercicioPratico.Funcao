@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FI.AtividadeEntrevista.DML
+﻿namespace FI.AtividadeEntrevista.DML
 {
-    class Beneficiario
+    /// <summary>
+    /// Classe de beneficiario que representa o registo na tabela BENEFICIARIOS do Banco de Dados
+    /// </summary>
+    public class Beneficiario
     {
         /// <summary>
         /// Id

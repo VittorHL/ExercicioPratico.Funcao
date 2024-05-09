@@ -1,8 +1,8 @@
 ﻿CREATE PROC FI_SP_PesqCliente
-	@iniciarEm int,
-	@quantidade int,
+	@iniciarEm		int,
+	@quantidade		int,
 	@campoOrdenacao varchar(200),
-	@crescente bit	
+	@crescente		bit	
 AS
 BEGIN
 	DECLARE @SCRIPT NVARCHAR(MAX)

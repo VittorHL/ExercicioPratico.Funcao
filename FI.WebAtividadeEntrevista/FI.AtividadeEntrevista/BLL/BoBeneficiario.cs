@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace FI.AtividadeEntrevista.BLL
 {
-    class BoBeneficiario
+    public class BoBeneficiario
     {
         /// <summary>
         /// Altera um beneficiario
@@ -19,25 +15,14 @@ namespace FI.AtividadeEntrevista.BLL
         }
 
         /// <summary>
-        /// Consulta o beneficiario pelo id
-        /// </summary>
-        /// <param name="id">id do beneficiario</param>
-        /// <returns></returns>
-        public DML.Beneficiario Consultar(long id)
-        {
-            DAL.DaoBeneficiario daoBeneficiario = new DAL.DaoBeneficiario();
-            return daoBeneficiario.Consultar(id);
-        }
-
-        /// <summary>
         /// Excluir o beneficiario pelo id
         /// </summary>
         /// <param name="id">id do beneficiario</param>
         /// <returns></returns>
-        public void Excluir(long id)
+        public void Excluir(string listId, long idCliente)
         {
             DAL.DaoBeneficiario daoBeneficiario = new DAL.DaoBeneficiario();
-            daoBeneficiario.Excluir(id);
+            daoBeneficiario.Excluir(listId, idCliente);
         }
 
         /// <summary>
@@ -53,41 +38,33 @@ namespace FI.AtividadeEntrevista.BLL
         /// <summary>
         /// Lista os beneficiarios
         /// </summary>
-        public List<DML.Beneficiario> Listar()
+        public List<DML.Beneficiario> Pesquisa(long idCliente)
         {
             DAL.DaoBeneficiario daoBeneficiario = new DAL.DaoBeneficiario();
-            return daoBeneficiario.Listar();
+            return daoBeneficiario.Pesquisa(idCliente);
         }
 
         /// <summary>
-        /// Lista os beneficiarios
+        /// Verifica Existencia - quando estiver incluindo o beneficiario
         /// </summary>
-        public List<DML.Beneficiario> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
+        /// <param name="cpf"></param>
+        /// <returns></returns>
+        public bool VerificarExistencia(string cpf, long idCliente)
         {
             DAL.DaoBeneficiario daoBeneficiario = new DAL.DaoBeneficiario();
-            return daoBeneficiario.Pesquisa(iniciarEm, quantidade, campoOrdenacao, crescente, out qtd);
+            return daoBeneficiario.VerificarExistencia(cpf, idCliente);
         }
 
         /// <summary>
-        /// Verifica Existencia
+        /// Verifica Existencia - quando estiver alterando o beneficiario
         /// </summary>
         /// <param name="cpf"></param>
+        /// <param name="idCliente"></param>
         /// <returns></returns>
-        public bool VerificarExistencia(string cpf)
+        public bool VerificarExistencia(string cpf, long idBeneficiario, long idCliente)
         {
             DAL.DaoBeneficiario daoBeneficiario = new DAL.DaoBeneficiario();
-            return daoBeneficiario.VerificarExistencia(cpf);
-        }
-        /// <summary>
-        /// Verifica Existencia
-        /// </summary>
-        /// <param name="cpf"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public bool VerificarExistencia(string cpf, long id)
-        {
-            DAL.DaoBeneficiario daoBeneficiario = new DAL.DaoBeneficiario();
-            return daoBeneficiario.VerificarExistencia(cpf, id);
+            return daoBeneficiario.VerificarExistencia(cpf, idCliente, idBeneficiario);
         }
     }
 }
