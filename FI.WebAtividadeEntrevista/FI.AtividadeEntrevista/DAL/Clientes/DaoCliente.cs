@@ -1,10 +1,7 @@
-﻿using System;
+﻿using FI.AtividadeEntrevista.DML;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FI.AtividadeEntrevista.DML;
 
 namespace FI.AtividadeEntrevista.DAL
 {
@@ -17,7 +14,7 @@ namespace FI.AtividadeEntrevista.DAL
         /// Inclui um novo cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
-        internal long Incluir(DML.Cliente cliente)
+        internal long Incluir(Cliente cliente)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
             
@@ -43,11 +40,11 @@ namespace FI.AtividadeEntrevista.DAL
         /// Consultar cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
-        internal DML.Cliente Consultar(long Id)
+        internal Cliente Consultar(long id)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
-            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", Id));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", id));
 
             DataSet ds = base.Consultar("FI_SP_ConsCliente", parametros);
             List<DML.Cliente> cli = Converter(ds);
@@ -58,15 +55,15 @@ namespace FI.AtividadeEntrevista.DAL
         /// <summary>
         /// Validar se já existe cliente com o Cpf informado
         /// </summary>
-        /// <param name="CPF"></param>
-        /// <param name="Id"></param>
+        /// <param name="cpf"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        internal bool VerificarExistencia(string CPF, long Id = 0)
+        internal bool VerificarExistencia(string cpf, long id = 0)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
-            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", CPF));
-            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", Id));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", cpf));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", id));
 
             DataSet ds = base.Consultar("FI_SP_VerificaCliente", parametros);
 
@@ -107,7 +104,7 @@ namespace FI.AtividadeEntrevista.DAL
         /// <summary>
         /// Lista todos os clientes
         /// </summary>
-        internal List<DML.Cliente> Listar()
+        internal List<Cliente> Listar()
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
@@ -123,7 +120,7 @@ namespace FI.AtividadeEntrevista.DAL
         /// Alterar cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
-        internal void Alterar(DML.Cliente cliente)
+        internal void Alterar(Cliente cliente)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
@@ -146,11 +143,11 @@ namespace FI.AtividadeEntrevista.DAL
         /// Excluir Cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
-        internal void Excluir(long Id)
+        internal void Excluir(long id)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
-            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", Id));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", id));
 
             base.Executar("FI_SP_DelCliente", parametros);
         }
@@ -160,7 +157,7 @@ namespace FI.AtividadeEntrevista.DAL
         /// </summary>
         /// <param name="ds"></param>
         /// <returns>List<DML.Cliente></returns>
-        private List<DML.Cliente> Converter(DataSet ds)
+        private List<Cliente> Converter(DataSet ds)
         {
             List<DML.Cliente> lista = new List<DML.Cliente>();
             if (ds != null && ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)

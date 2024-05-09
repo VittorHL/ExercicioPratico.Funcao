@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace FI.AtividadeEntrevista.BLL
 {
@@ -71,23 +67,24 @@ namespace FI.AtividadeEntrevista.BLL
         /// <summary>
         /// Verifica Existencia
         /// </summary>
-        /// <param name="CPF"></param>
+        /// <param name="cpf"></param>
         /// <returns></returns>
-        public bool VerificarExistencia(string CPF)
+        public bool VerificarExistencia(string cpf)
         {
             DAL.DaoCliente cli = new DAL.DaoCliente();
-            return cli.VerificarExistencia(CPF);
+            return cli.VerificarExistencia(cpf);
         }
+
         /// <summary>
         /// Verifica Existencia
         /// </summary>
-        /// <param name="CPF"></param>
-        /// <param name="Id"></param>
+        /// <param name="cpf"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public bool VerificarExistencia(string CPF, long Id)
+        public bool VerificarExistencia(string cpf, long id)
         {
             DAL.DaoCliente cli = new DAL.DaoCliente();
-            return cli.VerificarExistencia(CPF, Id);
+            return cli.VerificarExistencia(cpf, id);
         }
     }
 }

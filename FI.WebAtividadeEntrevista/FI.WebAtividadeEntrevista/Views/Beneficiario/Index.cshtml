@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Beneficiários";
+}
+@section scripts{
+    @Scripts.Render("~/bundles/beneficiario")
+}
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="modal-title">@Html.Raw(ViewBag.Title)</h3>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            @Html.Partial("Forms")
+            <table id="beneficiariosTable" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>
+
+
+
+

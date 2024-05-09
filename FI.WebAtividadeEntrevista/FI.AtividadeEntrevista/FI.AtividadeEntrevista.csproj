@@ -61,9 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BoBeneficiario.cs" />
     <Compile Include="BLL\BoCliente.cs" />
+    <Compile Include="DAL\Beneficiario\DaoBeneficiario.cs" />
     <Compile Include="DAL\Clientes\DaoCliente.cs" />
     <Compile Include="DAL\Padrao\FI.AcessoDados.cs" />
+    <Compile Include="DML\Beneficiario.cs" />
     <Compile Include="DML\Cliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +78,11 @@
     <EmbeddedResource Include="DAL\Clientes\Procedures\FI_SP_IncCliente.sql" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DAL\Beneficiario\Procedures\FI_SP_AltBeneficiario.sql" />
+    <Content Include="DAL\Beneficiario\Procedures\FI_SP_DelBeneficiario.sql" />
+    <Content Include="DAL\Beneficiario\Procedures\FI_SP_IncBeneficiario.sql" />
+    <Content Include="DAL\Beneficiario\Procedures\FI_SP_PesqBeneficiario.sql" />
+    <Content Include="DAL\Beneficiario\Procedures\FI_SP_VerificaBeneficiario.sql" />
     <Content Include="DAL\Clientes\Procedures\FI_SP_VerificaCliente.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -89,5 +97,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
