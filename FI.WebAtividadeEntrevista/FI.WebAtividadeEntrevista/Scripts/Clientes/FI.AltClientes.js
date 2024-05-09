@@ -2,6 +2,7 @@
 $(document).ready(function () {
     ValidaCPF();
     LoadInput();
+    PreparaInputs();
     SubmitForm();
 })
 
@@ -15,14 +16,14 @@ function SubmitForm() {
             data: {
                 "NOME": $(this).find("#Nome").val(),
                 "Sobrenome": $(this).find("#Sobrenome").val(),
-                "CPF": $(this).find("#CPF").unmask().val(),
-                "CEP": $(this).find("#CEP").val(),
+                "CPF": $(this).find("#CPF").val().replace(/\D/g, ''),
+                "CEP": $(this).find("#CEP").val().replace(/\D/g, ''),
                 "Email": $(this).find("#Email").val(),
                 "Nacionalidade": $(this).find("#Nacionalidade").val(),
                 "Estado": $(this).find("#Estado").val(),
                 "Cidade": $(this).find("#Cidade").val(),
                 "Logradouro": $(this).find("#Logradouro").val(),
-                "Telefone": $(this).find("#Telefone").val()
+                "Telefone": $(this).find("#Telefone").val().replace(/\D/g, '')
             },
             error:
                 function (r) {
@@ -78,7 +79,7 @@ function LoadInput() {
     if (obj) {
         $('#formCadastro #Nome').val(obj.Nome);
         $('#formCadastro #Sobrenome').val(obj.Sobrenome);
-        $('#formCadastro #CPF').val(obj.CPF).mask('000.000.000-00');
+        $('#formCadastro #CPF').val(obj.CPF);
         $('#formCadastro #CEP').val(obj.CEP);
         $('#formCadastro #Email').val(obj.Email);
         $('#formCadastro #Nacionalidade').val(obj.Nacionalidade);
@@ -90,6 +91,22 @@ function LoadInput() {
         let link = document.getElementById('btnModalBeneficiario');
         link.href = urlBeneficiario + "/" + obj.Id;
     }
+}
+
+function PreparaInputs() {
+    $('#CPF').mask('000.000.000-00');
+    $("#CEP").mask("99.999-999");
+
+    var maskTelefone = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+    },
+        Options = {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(maskTelefone.apply({}, arguments), options);
+            }
+        };
+
+    $('#Telefone').mask(maskTelefone, Options);
 }
 
 function ValidaCPF() {

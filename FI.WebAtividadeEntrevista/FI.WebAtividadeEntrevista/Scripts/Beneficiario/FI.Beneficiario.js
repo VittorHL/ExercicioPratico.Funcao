@@ -13,7 +13,7 @@ function SubmitForm() {
 
         var html = '';
         html += '<tr id=\'0\' idCliente=\'0\'>';
-        html += '<td>' + $('#txtCpf').val() + '</td>';
+        html += '<td>' + $('#txtCpf').val().replace(/\D/g, '') + '</td>';
         html += '<td>' + $('#txtNome').val() + '</td>';
         html += '<td> <button class="btn btn-info btn-sm" onclick="AlteraBeneficiario(this)">Editar</button> <button class="btn btn-danger btn-sm" onclick="ExcluiBeneficiario(this)">Excluir</button> </td>';
         html += '</tr>';` `

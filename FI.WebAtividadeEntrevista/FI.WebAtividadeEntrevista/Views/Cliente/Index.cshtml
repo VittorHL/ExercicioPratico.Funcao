@@ -11,5 +11,5 @@
     @Scripts.Render("~/bundles/listClientes")
 }
 <h2>@Html.Raw(ViewBag.Title)</h2>
-@Html.ActionLink("Novo Cliente", "Incluir", "Cliente", new { }, new { @class= "btn btn-sm btn-primary pull-right" })
+@Html.ActionLink("Novo Cliente", "Incluir", "Cliente", new { }, new { @class= "btn btn-sm btn-primary pull-right", @style= "margin-bottom: 3px;" })
 <table id="gridClientes" class="table"></table>
