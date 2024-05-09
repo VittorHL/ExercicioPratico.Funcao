@@ -84,6 +84,7 @@
     <Content Include="DAL\Beneficiario\Procedures\FI_SP_PesqBeneficiario.sql" />
     <Content Include="DAL\Beneficiario\Procedures\FI_SP_VerificaBeneficiario.sql" />
     <Content Include="DAL\Clientes\Procedures\FI_SP_VerificaCliente.sql" />
+    <Content Include="DAL\Padrao\Script\FI_SP_ResetTables.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

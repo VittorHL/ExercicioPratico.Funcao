@@ -2,13 +2,15 @@
 $(document).ready(function () {
     ValidaCPF();
     PreparaInputs();
+    SubmitForm();
 
     let link = document.getElementById('btnModalBeneficiario');
     link.href = urlBeneficiario;
+})
 
+function SubmitForm() {
     $('#formCadastro').submit(function (e) {
         e.preventDefault();
-        console.log("to aqui");
         $.ajax({
             url: urlPost,
             method: "POST",
@@ -38,7 +40,7 @@ $(document).ready(function () {
                 }
         });
     })
-})
+}
 
 function SubmitBeneficiarios(param) {
     $.ajax({
